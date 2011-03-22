@@ -12,6 +12,7 @@
 		]
 	},
 	"key": "cron",
+	"path": "cron/",
 	"plugin": "Cron",
 	"prerequisites": {
 	},

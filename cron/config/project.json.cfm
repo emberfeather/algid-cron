@@ -3,6 +3,9 @@
 	},
 	"applicationTransients": {
 	},
+	"cron": {
+		"prefix": "cron_"
+	},
 	"i18n": {
 		"locales": [
 			"en_US"

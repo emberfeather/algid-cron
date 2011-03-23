@@ -1,8 +1,8 @@
-<cfset viewCron = views.get('cron', 'cron') />
+<cfset viewTask = views.get('cron', 'task') />
 
 <cfset filter = {
-		'search' = theURL.search('search')
-	} />
+	'search' = theURL.search('search')
+} />
 
 <cfoutput>
 	#viewCron.filter( filter )#

@@ -2,6 +2,7 @@
 	"applicationSingletons": {
 	},
 	"applicationTransients": {
+		"managerCron": "plugins.cron.inc.resource.manager.cron"
 	},
 	"cron": {
 		"prefix": "cron_"
@@ -12,6 +13,7 @@
 		]
 	},
 	"key": "cron",
+	"path": "cron/",
 	"plugin": "Cron",
 	"prerequisites": {
 	},

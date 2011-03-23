@@ -11,7 +11,7 @@
 		<cfset datagrid = variables.transport.theApplication.factories.transient.getDatagrid(i18n, variables.transport.theSession.managers.singleton.getSession().getLocale()) />
 		
 		<!--- Add the resource bundle for the view --->
-		<cfset datagrid.addBundle('plugins/cron/i18n/inc/view', 'viewCron') />
+		<cfset datagrid.addBundle('plugins/cron/i18n/inc/view', 'viewTask') />
 		
 		<cfset datagrid.addColumn({
 			key = 'taskName',
@@ -57,7 +57,7 @@
 		<cfset filter = variables.transport.theApplication.factories.transient.getFilterVertical(variables.transport.theApplication.managers.singleton.getI18N()) />
 		
 		<!--- Add the resource bundle for the view --->
-		<cfset filter.addBundle('plugins/cron/i18n/inc/view', 'viewCron') />
+		<cfset filter.addBundle('plugins/cron/i18n/inc/view', 'viewTask') />
 		
 		<!--- Search --->
 		<cfset filter.addFilter('search') />
@@ -75,7 +75,7 @@
 		<cfset filterActive = variables.transport.theApplication.factories.transient.getFilterActive(variables.transport.theApplication.managers.singleton.getI18N()) />
 		
 		<!--- Add the resource bundle for the view --->
-		<cfset filterActive.addBundle('plugins/cron/i18n/inc/view', 'viewCron') />
+		<cfset filterActive.addBundle('plugins/cron/i18n/inc/view', 'viewTask') />
 		
 		<cfreturn filterActive.toHTML(arguments.filter, variables.transport.theRequest.managers.singleton.getURL()) />
 	</cffunction>

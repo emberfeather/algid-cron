@@ -14,6 +14,12 @@ component extends="cf-compendium.inc.resource.base.base" {
 		// base does nothing
 	}
 	
+	public component function getModel(required string plugin, required string model) {
+		local.models = variables.transport.theRequest.managers.singleton.getManagerModel();
+		
+		return local.models.get(arguments.plugin, arguments.model);
+	}
+	
 	public component function getPluginObserver( required string plugin, required string observer ) {
 		// Get the plugin singleton
 		local.plugin = variables.transport.theApplication.managers.plugin.get(arguments.plugin);

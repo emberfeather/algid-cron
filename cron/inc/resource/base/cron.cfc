@@ -14,7 +14,7 @@ component extends="cf-compendium.inc.resource.base.base" {
 		// base does nothing
 	}
 	
-	public component function getModel(required string plugin, required string model) {
+	public component function getModel(string plugin = '', string model = '') {
 		local.models = variables.transport.theRequest.managers.singleton.getManagerModel();
 		
 		return local.models.get(arguments.plugin, arguments.model);

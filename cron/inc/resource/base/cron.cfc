@@ -10,7 +10,7 @@ component extends="cf-compendium.inc.resource.base.base" {
 		return this;
 	}
 	
-	public void function execute() {
+	public void function execute(struct options = {}) {
 		// base does nothing
 	}
 	

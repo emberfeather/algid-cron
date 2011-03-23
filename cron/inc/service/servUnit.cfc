@@ -114,12 +114,14 @@
 						"unitID",
 						"taskID",
 						"plugin",
-						"cron"
+						"cron",
+						"options"
 					) VALUES (
 						<cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getUnitID()#" />::uuid,
 						<cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getTaskID()#" />::uuid,
 						<cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getPlugin()#" />,
-						<cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getCron()#" />
+						<cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getCron()#" />,
+						<cfqueryparam cfsqltype="cf_sql_longvarchar" value="#serializeJson(arguments.unit.getOptions())#" />::text
 					)
 				</cfquery>
 			</cftransaction>
@@ -135,6 +137,7 @@
 						"taskID" = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getTaskID()#" />::uuid,
 						"plugin" = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getPlugin()#" />,
 						"cron" = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getCron()#" />
+						"options" = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#serializeJson(arguments.unit.getOptions())#" />::text
 					WHERE
 						"unitID" = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getUnitID()#" />::uuid
 				</cfquery>

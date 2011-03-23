@@ -51,24 +51,36 @@
 		writeOutput('<div>No units found for task.</div>')
 	}
 	
+	writeOutput('<pre>');
+	
+	writeOutput('<div>Starting the `<strong>' & task.getTask() & '</strong>` task.</div>');
+	
+	writeOutput('<dl>');
+	
 	// Execute all waiting crons
 	for(i = 1; i <= units.recordCount; i++) {
-		writeOutput('<div>Running <strong>#units.cron[i]#</strong> cron in the <strong>#units.plugin[i]#</strong> plugin.</div>')
+		writeOutput('<dt>Running the `<strong>#units.cron[i]#</strong>` cron in the `<strong>#units.plugin[i]#</strong>` plugin</dt>')
 		
 		try {
 			cron = crons.get(units.plugin[i], units.cron[i], task);
 			
 			cron.execute(deserializeJson(units.options[i]));
+			
+			writeOutput('<dd><em>Completed Normally.</em></dd>')
 		} catch( any exception ) {
 			getPageContext().getResponse().setStatus(500, 'Internal Server Error');
 			
 			transport.theApplication.managers.singleton.getErrorLog().log(exception);
 			
-			writeOutput('<div><strong><em>Error!</em></strong></div>')
+			writeOutput('<dd><strong><em>Error!</em></strong></dd>')
 		}
 	}
 	
-	writeOutput('<div><strong>Cron Task Completed.</strong></div>');
+	writeOutput('</dl>');
+	
+	writeOutput('<div>Finished the `<strong>' & task.getTask() & '</strong>` task.</div>');
+	
+	writeOutput('</pre>');
 	
 	profiler.stop('processing');
 </cfscript>

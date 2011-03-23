@@ -46,8 +46,8 @@
 			(
 				"taskID" uuid NOT NULL,
 				task character varying NOT NULL,
-				CONSTRAINT task_pkey PRIMARY KEY ("taskID"),
-				CONSTRAINT task_task_key UNIQUE (task)
+					CONSTRAINT task_pkey PRIMARY KEY ("taskID"),
+					CONSTRAINT task_task_key UNIQUE (task)
 			)
 			WITH (OIDS=FALSE);
 		</cfquery>
@@ -66,11 +66,14 @@
 			(
 				"unitID" uuid NOT NULL, 
 				"taskID" uuid NOT NULL, 
-				plugin character varying(75) NOT NULL, 
-				cron character varying(75) NOT NULL, 
-					PRIMARY KEY ("unitID"), 
-					FOREIGN KEY ("taskID") REFERENCES "#variables.datasource.prefix#cron".task ("taskID") ON UPDATE CASCADE ON DELETE CASCADE, 
-					UNIQUE ("taskID", plugin, cron)
+				plugin character varying(75) NOT NULL,
+				cron character varying(75) NOT NULL,
+				options text NOT NULL DEFAULT '{}'::text,
+					CONSTRAINT unit_pkey PRIMARY KEY ("unitID"),
+					CONSTRAINT "unit_taskID_fkey" FOREIGN KEY ("taskID")
+						REFERENCES "#variables.datasource.prefix#cron".task ("taskID") MATCH SIMPLE
+						ON UPDATE CASCADE ON DELETE CASCADE,
+					CONSTRAINT "unit_taskID_key" UNIQUE ("taskID", plugin, cron)
 			)
 			WITH (OIDS=FALSE);
 		</cfquery>

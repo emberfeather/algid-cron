@@ -27,7 +27,7 @@
 		</cfif>
 		
 		<cfquery name="local.results" datasource="#variables.datasource.name#">
-			SELECT "unitID", "taskID", "plugin", "cron"
+			SELECT "unitID", "taskID", "plugin", "cron", "options"
 			FROM "#variables.datasource.prefix#cron"."unit"
 			WHERE "unitID" = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unitID#" null="#arguments.unitID eq ''#" />::uuid
 		</cfquery>
@@ -36,6 +36,8 @@
 			<cfset local.modelSerial = variables.transport.theApplication.factories.transient.getModelSerial(variables.transport) />
 			
 			<cfset local.modelSerial.deserialize(local.results, local.unit) />
+			
+			<cfset local.unit.setOptions(deserializeJson(local.results.options)) />
 		</cfif>
 		
 		<cfreturn local.unit />
@@ -51,7 +53,7 @@
 		}, arguments.filter) />
 		
 		<cfquery name="local.results" datasource="#variables.datasource.name#">
-			SELECT DISTINCT "unitID", "taskID", "plugin", "cron"
+			SELECT DISTINCT "unitID", "taskID", "plugin", "cron", "options"
 			FROM "#variables.datasource.prefix#cron"."unit"
 			WHERE 1=1
 			

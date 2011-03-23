@@ -7,7 +7,7 @@ component extends="algid.inc.resource.base.service" {
 		return this;
 	}
 	
-	public query function getScheduledTasks(required string password, struct filter = {}) {
+	public query function getScheduledTasks(struct filter = {}) {
 		schedule action="list" returnvariable="local.allTasks";
 		
 		query dbtype="query" name="local.tasks" {
@@ -43,6 +43,19 @@ component extends="algid.inc.resource.base.service" {
 			local.modelSerial = variables.transport.theApplication.factories.transient.getModelSerial(variables.transport);
 			
 			local.modelSerial.deserialize(local.results, local.task);
+			
+			schedule action="list" returnvariable="local.allTasks";
+			
+			query dbtype="query" name="local.tasks" {
+				// Filter down to just the cron tasks
+				writeOutput( "SELECT startDate, endDate, startTime, endTime, url, port, interval, timeout " );
+				writeOutput( "FROM local.allTasks " );
+				writeOutput( "WHERE task = " );
+				
+				queryparam value="#variables.prefix##local.results.task#" cfsqltype="cf_sql_varchar";
+			}
+			
+			local.modelSerial.deserialize(local.tasks, local.task);
 		}
 		
 		return local.task;

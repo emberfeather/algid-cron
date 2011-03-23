@@ -1,5 +1,4 @@
 <cfscript>
-	
 	profiler = request.managers.singleton.getProfiler();
 	
 	profiler.start('startup');

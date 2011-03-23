@@ -48,16 +48,25 @@
 	
 	units = servUnit.getUnits(task);
 	
+	if(units.recordCount == 0) {
+		writeOutput('<div>No units found for task.</div>')
+	}
+	
 	// Execute all waiting crons
 	for(i = 1; i <= units.recordCount; i++) {
 		writeOutput('<div>Running <strong>#units.cron[i]#</strong> cron in the <strong>#units.plugin[i]#</strong> plugin.</div>')
 		
-		cron = crons.get(units.plugin[i], units.cron[i], task);
-		cron.execute();
-	}
-	
-	if(units.recordCount == 0) {
-		writeOutput('<div>No units found for task.</div>')
+		try {
+			cron = crons.get(units.plugin[i], units.cron[i], task);
+			
+			cron.execute();
+		} catch( any exception ) {
+			getPageContext().getResponse().setStatus(500, 'Internal Server Error');
+			
+			transport.theApplication.managers.singleton.getErrorLog().log(exception);
+			
+			writeOutput('<div><strong><em>Error!</em></strong></div>')
+		}
 	}
 	
 	writeOutput('<div><strong>Cron Task Completed.</strong></div>');

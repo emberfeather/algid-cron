@@ -40,7 +40,7 @@
 			TABLES
 		--->
 		
-		<!--- Domain Table --->
+		<!--- Task Table --->
 		<cfquery datasource="#variables.datasource.name#">
 			CREATE TABLE "#variables.datasource.prefix#cron"."task"
 			(
@@ -48,6 +48,29 @@
 				task character varying NOT NULL,
 				CONSTRAINT task_pkey PRIMARY KEY ("taskID"),
 				CONSTRAINT task_task_key UNIQUE (task)
+			)
+			WITH (OIDS=FALSE);
+		</cfquery>
+		
+		<cfquery datasource="#variables.datasource.name#">
+			ALTER TABLE "#variables.datasource.prefix#cron"."task" OWNER TO #variables.datasource.owner#;
+		</cfquery>
+		
+		<cfquery datasource="#variables.datasource.name#">
+			COMMENT ON TABLE "#variables.datasource.prefix#cron"."task" IS 'Tasks being administered by the cron plugin.';
+		</cfquery>
+		
+		<!--- Unit Table --->
+		<cfquery datasource="#variables.datasource.name#">
+			CREATE TABLE "#variables.datasource.prefix#cron"."unit"
+			(
+				"unitID" uuid NOT NULL, 
+				"taskID" uuid NOT NULL, 
+				plugin character varying(75) NOT NULL, 
+				cron character varying(75) NOT NULL, 
+					PRIMARY KEY ("unitID"), 
+					FOREIGN KEY ("taskID") REFERENCES "#variables.datasource.prefix#cron".task ("taskID") ON UPDATE CASCADE ON DELETE CASCADE, 
+					UNIQUE ("taskID", plugin, cron)
 			)
 			WITH (OIDS=FALSE);
 		</cfquery>

@@ -28,6 +28,10 @@
 	models = transport.theApplication.factories.transient.getManagerModel(transport, i18n, locale);
 	transport.theRequest.managers.singleton.setManagerModel(models);
 	
+	// Create and store the view manager
+	views = transport.theApplication.factories.transient.getManagerView(transport);
+	transport.theRequest.managers.singleton.setManagerView(views);
+	
 	// Create and store the api manager
 	crons = transport.theApplication.factories.transient.getManagerCron(transport);
 	transport.theRequest.managers.singleton.setManagerCron(crons);

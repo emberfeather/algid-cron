@@ -2,7 +2,7 @@
 <cfscript>
 	public void function onApplicationStart(required struct theApplication) {
 		// Get the plugin
-		local.plugin = arguments.theApplication.managers.plugin.getContent();
+		local.plugin = arguments.theApplication.managers.plugin.getCron();
 		
 		// Check for control of the main application index
 		local.pluginHandlerDir = '/root/' & local.plugin.getPath();

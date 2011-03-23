@@ -50,6 +50,8 @@
 	
 	// Execute all waiting crons
 	for(i = 1; i <= units.recordCount; i++) {
+		writeOutput('<div>Running <strong>#units.cron[i]#</strong> cron in the <strong>#units.plugin[i]#</strong> plugin.</div>')
+		
 		cron = crons.get(units.plugin[i], units.cron[i], task);
 		cron.execute();
 	}

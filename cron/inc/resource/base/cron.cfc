@@ -13,4 +13,17 @@ component extends="cf-compendium.inc.resource.base.base" {
 	public void function execute() {
 		// base does nothing
 	}
+	
+	public component function getPluginObserver( required string plugin, required string observer ) {
+		// Get the plugin singleton
+		local.plugin = variables.transport.theApplication.managers.plugin.get(arguments.plugin);
+		
+		// Get the observer manager for the plugin
+		local.observerManager = local.plugin.getObserver();
+		
+		// Get the specific observer
+		local.observer = local.observerManager.get(arguments.observer);
+		
+		return local.observer;
+	}
 }

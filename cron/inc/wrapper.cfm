@@ -59,7 +59,7 @@
 		try {
 			cron = crons.get(units.plugin[i], units.cron[i], task);
 			
-			cron.execute();
+			cron.execute(deserializeJson(units.options[i]));
 		} catch( any exception ) {
 			getPageContext().getResponse().setStatus(500, 'Internal Server Error');
 			

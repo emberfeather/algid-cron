@@ -68,7 +68,9 @@
 		try {
 			cron = crons.get(units.plugin[i], units.cron[i], task);
 			
-			cron.execute(deserializeJson(units.options[i]));
+			transaction {
+				cron.execute(deserializeJson(units.options[i]));
+			}
 			
 			writeOutput('<dd><em>Completed Normally.</em></dd>')
 		} catch( any exception ) {

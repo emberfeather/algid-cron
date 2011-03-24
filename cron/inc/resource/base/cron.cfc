@@ -21,7 +21,7 @@ component extends="cf-compendium.inc.resource.base.base" {
 	}
 	
 	public component function getView(required string plugin, required string view) {
-		local.views = variables.transport.theRequest.managers.singleton.getViewModel();
+		local.views = variables.transport.theRequest.managers.singleton.getManagerView();
 		
 		return local.views.get(arguments.plugin, arguments.view);
 	}

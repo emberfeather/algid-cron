@@ -7,7 +7,7 @@
 		<cfset local.observer.beforeArchive(variables.transport, arguments.unit) />
 		
 		<cftransaction>
-			<cfquery datasource="#variables.datasource.name#" result="results">
+			<cfquery datasource="#variables.datasource.name#">
 				DELETE FROm "#variables.datasource.prefix#cron"."unit"
 				WHERE
 					"unitID" = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getUnitID()#" />::uuid
@@ -108,7 +108,7 @@
 			<cfset local.observer.beforeCreate(variables.transport, arguments.unit) />
 			
 			<cftransaction>
-				<cfquery datasource="#variables.datasource.name#" result="results">
+				<cfquery datasource="#variables.datasource.name#">
 					INSERT INTO "#variables.datasource.prefix#cron"."unit"
 					(
 						"unitID",
@@ -131,7 +131,7 @@
 			<cfset local.observer.beforeUpdate(variables.transport, arguments.unit) />
 			
 			<cftransaction>
-				<cfquery datasource="#variables.datasource.name#" result="results">
+				<cfquery datasource="#variables.datasource.name#">
 					UPDATE "#variables.datasource.prefix#cron"."unit"
 					SET
 						"taskID" = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.unit.getTaskID()#" />::uuid,

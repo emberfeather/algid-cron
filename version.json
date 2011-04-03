@@ -1,8 +1,8 @@
 {
-	"archive": "",
+	"archive": "http://github.com/emberfeather/algid-cron/tarball/0.1.0",
 	"key": "cron",
+	"releaseNotes": "http://github.com/emberfeather/algid-cron/wiki/Release-Notes",
 	"title": "Cron",
-	"releaseNotes": "",
-	"URL": "",
+	"URL": "http://github.com/emberfeather/algid-cron",
 	"version": "0.1.0"
 }

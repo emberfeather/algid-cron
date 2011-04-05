@@ -80,7 +80,7 @@
 		} catch( any exception ) {
 			getPageContext().getResponse().setStatus(500, 'Internal Server Error');
 			
-			transport.theApplication.managers.singleton.getErrorLog().log(exception);
+			transport.theSession.managers.singleton.getErrorLog().log(exception);
 			
 			writeOutput('<dd><strong><em>Error!</em></strong></dd>')
 		}

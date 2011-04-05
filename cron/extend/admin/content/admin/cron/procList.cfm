@@ -1,4 +1,4 @@
-<cfset servTask = services.get('cron', 'cron') />
+<cfset servTask = services.get('cron', 'task') />
 
 <cfif cgi.request_method eq 'post'>
 	<!--- Update the URL and redirect --->

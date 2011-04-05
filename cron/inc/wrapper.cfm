@@ -46,13 +46,19 @@
 	servTask = services.get('cron', 'task');
 	servUnit = services.get('cron', 'unit');
 	
+	if(!structKeyExists(transport.theUrl, 'task')) {
+		writeOutput('<div>No task found to run.</div>');
+		
+		abort;
+	}
+	
 	tasks = servTask.getTasks({ 'task': transport.theUrl.task });
 	task = servTask.getTask( tasks.taskID );
 	
 	units = servUnit.getUnits(task);
 	
 	if(units.recordCount == 0) {
-		writeOutput('<div>No units found for task.</div>')
+		writeOutput('<div>No units found for task.</div>');
 	}
 	
 	writeOutput('<pre>');

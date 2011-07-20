@@ -14,16 +14,12 @@
 		<cfset datagrid.addBundle('plugins/cron/i18n/inc/view', 'viewTask') />
 		
 		<cfset datagrid.addColumn({
-			key = 'taskName',
+			key = 'task',
 			label = 'task',
 			link = {
-				'task' = 'taskName',
+				'task' = 'task',
+				'_base' = '/admin/cron'
 			}
-		}) />
-		
-		<cfset datagrid.addColumn({
-			key = 'interval',
-			label = 'interval'
 		}) />
 		
 		<cfset datagrid.addColumn({

@@ -5,5 +5,5 @@
 } />
 
 <cfoutput>
-	#viewCron.filter( filter )#
+	#viewTask.filter( filter )#
 </cfoutput>

@@ -55,7 +55,9 @@
 	tasks = servTask.getTasks({ 'task': transport.theUrl.task });
 	task = servTask.getTask( tasks.taskID );
 	
-	units = servUnit.getUnits(task);
+	units = servUnit.getUnits({
+		taskID: task.getTaskID()
+	});
 	
 	if(units.recordCount == 0) {
 		writeOutput('<div>No units found for task.</div>');

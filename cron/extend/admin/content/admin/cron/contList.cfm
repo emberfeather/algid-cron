@@ -1,4 +1,4 @@
-<cfset tasks = servTask.getTasks('Testing', filter) />
+<cfset tasks = servTask.getTasks(filter) />
 
 <cfset paginate = variables.transport.theApplication.factories.transient.getPaginate(tasks.recordCount, session.numPerPage, theURL.searchID('onPage')) />
 

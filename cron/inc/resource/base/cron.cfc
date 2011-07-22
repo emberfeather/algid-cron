@@ -20,6 +20,12 @@ component extends="cf-compendium.inc.resource.base.base" {
 		return local.models.get(arguments.plugin, arguments.model);
 	}
 	
+	public component function getService(required string plugin, required string service) {
+		local.services = variables.transport.theRequest.managers.singleton.getManagerService();
+		
+		return local.services.get(arguments.plugin, arguments.service);
+	}
+	
 	public component function getView(required string plugin, required string view) {
 		local.views = variables.transport.theRequest.managers.singleton.getManagerView();
 		

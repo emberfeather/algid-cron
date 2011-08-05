@@ -97,6 +97,7 @@
 		
 		<cfset local.observer = getPluginObserver('cron', 'unit') />
 		
+		<cfset scrub__model(arguments.unit) />
 		<cfset validate__model(arguments.unit) />
 		
 		<cfset local.observer.beforeSave(variables.transport, arguments.unit) />

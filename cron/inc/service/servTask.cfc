@@ -81,10 +81,10 @@ component extends="algid.inc.resource.base.service" {
 				writeOutput( ' ) ' );
 			}
 			
-			if (structKeyExists(arguments.filter, 'task') and arguments.filter.task neq '') {
+			if (structKeyExists(arguments.filter, 'task')) {
 				writeOutput( 'AND "task" = ' );
 				
-				queryparam value="#arguments.filter.task#" cfsqltype="cf_sql_varchar";
+				queryparam value="#arguments.filter.task#" cfsqltype="cf_sql_varchar" null=arguments.filter.task eq '';
 			}
 		}
 		

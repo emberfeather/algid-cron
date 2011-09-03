@@ -53,6 +53,12 @@
 	}
 	
 	tasks = servTask.getTasks({ 'task': transport.theUrl.task });
+	
+	if(tasks.recordCount == 0) {
+		writeOutput('<div>No matching <strong>tasks</strong> found.</div>');
+		abort;
+	}
+	
 	task = servTask.getTask( tasks.taskID );
 	
 	units = servUnit.getUnits({
@@ -60,7 +66,8 @@
 	});
 	
 	if(units.recordCount == 0) {
-		writeOutput('<div>No units found for task.</div>');
+		writeOutput('<div>No <strong>units</strong> found for the <strong>#task.getTask()#</strong> task.</div>');
+		abort;
 	}
 	
 	writeOutput('<pre>');
